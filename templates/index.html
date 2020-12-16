@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+.search-box{
+    padding: 100px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+@media screen and (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#" class="active">Dive in Law</a>
+</div>
+<div class="search-box">
+    <input type="text" placeholder="Google 검색" style="width:500px;height:50px;font-size: 20px;">
+</div>
+<div class="row">
+  <div class="side">
+    <h2>최신판례</h2>
+    {% for item in recent_sentences %}
+      <p>{{ item.0 }} - {{ item.1 }} - {{ item.2 }}</p>
+    {% endfor %}
+    <!-- https://www.scourt.go.kr/supreme/info/JpBoardListAction.work?gubun=1  -->
+    <h5></h5>
+  </div>
+
+  <div class="main">
+    <h2>대시보드</h2>
+    <!-- https://www.lawtimes.co.kr/Case-Curation/ -->
+    {% for item in news %}
+      <p>{{ item.0 }} - {{ item.1 }} - {{ item.2 }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="footer">
+  <h2>help@diveinlaw.com</h2>
+</div>
+
+</body>
+</html>
